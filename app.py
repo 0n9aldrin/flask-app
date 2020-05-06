@@ -13,8 +13,8 @@ def index():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-    driver.get('https://google.com')
-    title = driver.find_element_by_xpath('//*[@id="tsf"]/div[2]/div[1]/div[3]/center/input[1]')
+    driver.get('https://stackoverflow.com/questions/19035186/how-to-select-element-using-xpath-syntax-on-selenium-for-python')
+    title = driver.find_element_by_xpath('//*[@id="question"]/div[2]/div[2]/div[1]/p[1]')
     return title.text
 
 
