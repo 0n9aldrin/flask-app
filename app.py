@@ -30,7 +30,7 @@ def index():
     names = ''
     for x in range(len(name)):
         names = names + name[x].text
-    names = names + len(name)
+    names = names + str(len(name))
     
     return names
 
