@@ -23,7 +23,6 @@ def index():
 
     for x in range(7):
         actions.send_keys(Keys.PAGE_DOWN).perform()
-        time.sleep(1)
 
     name = driver.find_elements_by_css_selector("#main > div > div.shopee-page-wrapper > div.container._2_Y1cV > div.jrLh5s > div.shopee-search-item-result > div.row.shopee-search-item-result__items > div > div > a > div > div:nth-child(2) > div:nth-child(1) > div")
 
