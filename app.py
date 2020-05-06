@@ -19,7 +19,6 @@ def index():
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     driver.get("https://shopee.co.id/search?keyword=calculator")
-    array = []
     actions = ActionChains(driver)
 
     for x in range(7):
@@ -28,12 +27,12 @@ def index():
 
     name = driver.find_elements_by_css_selector("#main > div > div.shopee-page-wrapper > div.container._2_Y1cV > div.jrLh5s > div.shopee-search-item-result > div.row.shopee-search-item-result__items > div > div > a > div > div:nth-child(2) > div:nth-child(1) > div")
 
-    array_name = []
-
+    names = ''
     for x in range(len(name)):
-        array_name.append(name[x].text)
+        names = names + name[x].text
+    names = names + len(name)
     
-    return array_name
+    return names
 
 
 if __name__ == "__main__":
