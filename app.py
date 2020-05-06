@@ -1,6 +1,11 @@
 from flask import Flask
 from selenium import webdriver
 import os
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+import time
+
 
 app = Flask(__name__)
 
@@ -13,9 +18,22 @@ def index():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-    driver.get('https://stackoverflow.com/questions/19035186/how-to-select-element-using-xpath-syntax-on-selenium-for-python')
-    title = driver.find_element_by_xpath('//*[@id="question"]/div[2]/div[2]/div[1]/p[1]')
-    return title.text
+    driver.get("https://shopee.co.id/search?keyword=calculator")
+    array = []
+    actions = ActionChains(driver)
+
+    for x in range(7):
+        actions.send_keys(Keys.PAGE_DOWN).perform()
+        time.sleep(1)
+
+    name = driver.find_elements_by_css_selector("#main > div > div.shopee-page-wrapper > div.container._2_Y1cV > div.jrLh5s > div.shopee-search-item-result > div.row.shopee-search-item-result__items > div > div > a > div > div:nth-child(2) > div:nth-child(1) > div")
+
+    array_name = []
+
+    for x in range(len(name)):
+        array_name.append(name[x].text)
+    
+    return array_name
 
 
 if __name__ == "__main__":
