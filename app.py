@@ -14,7 +14,8 @@ def index():
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     driver.get('https://google.com')
-    return driver.page_source
+    title = driver.find_element_by_xpath('//*[@id="tsf"]/div[2]/div[1]/div[3]/center/input[1]')
+    return title.text
 
 
 if __name__ == "__main__":
